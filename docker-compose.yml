@@ -1,0 +1,27 @@
+version: '3.0'
+
+services:
+  docker-template-mysql:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - /Users/ybzhou/sql-data/docker-template-mysql-container:/var/lib/mysql
+#      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d/:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=docker-template
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+  docker-template:
+    image: felix/docker-template:latest
+    depends_on:
+      - docker-template-mysql
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=docker-template-mysql
+      - DATABASE_PORT=3306
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=docker-template

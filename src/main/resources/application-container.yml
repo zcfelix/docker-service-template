@@ -3,21 +3,13 @@ server:
 
 spring:
   profiles: container
-#  mvc:
-#    throw-exception-if-no-handler-found: true
-  application:
-    name: docker-template
   datasource:
     url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?autoReconnect=true&useSSL=false
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
     driver-class-name: com.mysql.jdbc.Driver
     platform: mysql
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQLDialect
-
-  output:
-    ansi:
-      enabled: always
+  flyway:
+    user: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?autoReconnect=true&useSSL=false

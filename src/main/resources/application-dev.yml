@@ -11,3 +11,7 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
     platform: mysql
+  flyway:
+    user: root
+    password: root
+    url: jdbc:mysql://localhost:3306/docker-template?autoReconnect=true&useSSL=false
